@@ -30,14 +30,23 @@ if (error) {
 
   return redirect("/signin");
 }
-
-const email = data?.user?.email;
 ---
 
-<Layout title="Dashboard" isLoggedIn={isLoggedIn}>
-  <h1>Welcome {email}</h1>
-  <p>Upload some <em>.slp</em> files <a href="/upload">here</a>!</p>
-  <form action="/api/auth/signout">
-    <button type="submit">Sign out</button>
+<Layout title="Upload" isLoggedIn={isLoggedIn}>
+  <h1>Upload</h1>
+  <p>Choose files to upload below:</p>
+  <form method="POST" action="/api/upload">
+    <input type="file" name="files[]" accept=".slp" multiple />
+    <button type="submit">Upload</button>
   </form>
 </Layout>
+
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+</style>

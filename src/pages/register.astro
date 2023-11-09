@@ -1,5 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const cookies = Astro.cookies;
+const redirect = Astro.redirect;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (accessToken && refreshToken) {
+  return redirect("/dashboard");
+}
 ---
 
 <Layout title="Register">
@@ -10,7 +20,7 @@ import Layout from "../layouts/Layout.astro";
     <input type="email" name="email" id="email" />
     <label for="password">Password</label>
     <input type="password" name="password" id="password" />
-    <button type="submit">Login</button>
+    <button type="submit">Register</button>
   </form>
 </Layout>
 
