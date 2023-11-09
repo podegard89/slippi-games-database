@@ -10,11 +10,27 @@ const { title } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
   <body>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/signin">Sign in</a>
+      <a href="/dashboard">Account</a>
+    </nav>
     <main>
       <slot />
     </main>
   </body>
 </html>
+
+<style>
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #eee;
+  }
+</style>
