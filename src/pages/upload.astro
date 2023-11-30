@@ -2,9 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { supabase } from "../lib/supabase";
 
-const cookies = Astro.cookies;
-
-const redirect = Astro.redirect;
+const { cookies, redirect } = Astro;
 
 const accessToken = cookies.get("sb-access-token");
 const refreshToken = cookies.get("sb-refresh-token");
@@ -35,8 +33,12 @@ if (error) {
 <Layout title="Upload" isLoggedIn={isLoggedIn}>
   <h1>Upload</h1>
   <p>Choose files to upload below:</p>
-  <form method="POST" action="/api/upload">
-    <input type="file" name="files[]" accept=".slp" multiple />
+  <form
+    method="POST"
+    action={import.meta.env.SLP_UPLOAD_API_ENDPOINT}
+    enctype="multipart/form-data"
+  >
+    <input type="file" name="slpFiles" accept=".slp" multiple />
     <button type="submit">Upload</button>
   </form>
 </Layout>

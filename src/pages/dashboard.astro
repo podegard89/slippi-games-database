@@ -2,16 +2,14 @@
 import Layout from "../layouts/Layout.astro";
 import { supabase } from "../lib/supabase";
 
-const cookies = Astro.cookies;
-
-const redirect = Astro.redirect;
+const { cookies, redirect } = Astro;
 
 const accessToken = cookies.get("sb-access-token");
 const refreshToken = cookies.get("sb-refresh-token");
 
 const isLoggedIn = !!(accessToken && refreshToken);
 
-if (!accessToken || !refreshToken) {
+if (!isLoggedIn) {
   return redirect("/signin");
 }
 
