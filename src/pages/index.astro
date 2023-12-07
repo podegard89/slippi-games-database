@@ -23,5 +23,15 @@ const isLoggedIn = !!(accessToken && refreshToken);
     <li>Character Matchup stats</li>
     <li>And more!</li>
   </ul>
-  <h2><a href="/signin">Sign in</a> to upload <em>.slp</em> files now!</h2>
+  {
+    isLoggedIn ? (
+      <h2>
+        Upload your <em>.slp</em> files <a href="/upload">here</a>!
+      </h2>
+    ) : (
+      <h2>
+        <a href="/signin">Sign in</a> to upload <em>.slp</em> files now!
+      </h2>
+    )
+  }
 </Layout>
