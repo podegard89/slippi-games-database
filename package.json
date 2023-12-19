@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.3.1",
+    "@astrojs/netlify": "^4.0.0",
     "@astrojs/node": "^6.0.3",
     "@slippi/slippi-js": "^6.7.0",
     "@supabase/supabase-js": "^2.38.4",
     "astro": "^3.4.3",
+    "slippi-inputs-per-minute": "link:",
     "typescript": "^5.2.2"
   }
 }

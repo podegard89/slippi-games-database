@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { supabase } from "../lib/supabase";
 
-const { cookies, redirect } = Astro;
+const { cookies, redirect, url } = Astro;
 
 const accessToken = cookies.get("sb-access-token");
 const refreshToken = cookies.get("sb-refresh-token");
@@ -30,10 +30,21 @@ if (error) {
 }
 
 const email = data?.user?.email;
+
+const filesProcessing = url.searchParams.get("filesProcessing");
 ---
 
 <Layout title="Dashboard" isLoggedIn={isLoggedIn}>
   <h1>Welcome {email}</h1>
+  {
+    filesProcessing && (
+      <p>
+        Your files are being processed in the background. This should only take
+        up to a few minutes. Once uploaded, your file data will appear on this
+        page!
+      </p>
+    )
+  }
   <p>Upload some <em>.slp</em> files <a href="/upload">here</a>!</p>
   <form action="/api/auth/signout">
     <button type="submit">Sign out</button>
